@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Student Management System</a>
+
+    <!-- Toggler/collapsibe Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/students}">Student Management</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+    <div class = "container">
+        <div class = "row">
+                <h1 class="display-4"> List Students </h1>
+        </div>
+
+                <div class="row">
+                    <div class = "col-lg-3">
+                        <a th:href = "@{/students/new}" class = "btn btn-primary rtn-sm mb-3"> Add new Student </a>
+                    </div>
+                </div>
+        <div>&nbsp;</div>
+            <div>
+                <form th:action="@{/students}">
+                    <div class="input-group">
+                        <input type="search" name = "keyword" th:value="${keyword}" required class="form-control rounded" placeholder="Search" aria-label="Search"
+                               aria-describedby="search-addon" />
+                        <button type="submit" class="btn btn-outline-primary">search</button>
+                        <input type="button" class="btn btn-outline-primary" value = "Clear" onclick="clearFilter()"/>
+                    </div>
+                </form>
+            </div>
+        <div>&nbsp;</div>
+        <table class = "table table-striped table-bordered">
+            <thead class = "table-primary">
+                <tr>
+                    <th> Student Name</th>
+                    <th> Student email</th>
+                    <th> Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each = "student: ${students}">
+                    <td th:text="${student.name}"></td>
+                    <td th:text="${student.email}"></td>
+                    <td>
+                        <a th:href="@{/students/view/{id}(id=${student.id})}"
+                           class="btn btn-info">View</a>
+                        <a th:href="@{/students/edit/{id}(id=${student.id})}"
+                        class="btn btn-primary">Update</a>
+
+                        <a th:href="@{/students/{id}(id=${student.id})}"
+                           class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script type="text/javascript">
+        function clearFilter(){
+            window.location = '/students'
+        }
+</script>
+</body>
+</html>

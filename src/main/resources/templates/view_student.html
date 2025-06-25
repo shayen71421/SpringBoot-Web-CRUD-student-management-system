@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Student Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Student Management System</a>
+</nav>
+<div class="container mt-4">
+    <h2>Student Details</h2>
+    <table class="table table-bordered">
+        <tbody>
+        <tr><th>ID</th><td th:text="${student.id}"></td></tr>
+        <tr><th>Student ID</th><td th:text="${student.studentId}"></td></tr>
+        <tr><th>SR No</th><td th:text="${student.srNo}"></td></tr>
+        <tr><th>Name</th><td th:text="${student.name}"></td></tr>
+        <tr><th>Gender</th><td th:text="${student.gender}"></td></tr>
+        <tr><th>Date of Birth</th><td th:text="${student.dateOfBirth}"></td></tr>
+        <tr><th>Religion</th><td th:text="${student.religion}"></td></tr>
+        <tr><th>Place of Birth</th><td th:text="${student.placeOfBirth}"></td></tr>
+        <tr><th>Mother Tongue</th><td th:text="${student.motherTongue}"></td></tr>
+        <tr><th>Admission No</th><td th:text="${student.admissionNo}"></td></tr>
+        <tr><th>University Reg No</th><td th:text="${student.universityRegNo}"></td></tr>
+        <tr><th>Nationality</th><td th:text="${student.nationality}"></td></tr>
+        <tr><th>Caste</th><td th:text="${student.caste}"></td></tr>
+        <tr><th>Blood Group</th><td th:text="${student.bloodGroup}"></td></tr>
+        <tr><th>Aadhaar No</th><td th:text="${student.aadhaarNo}"></td></tr>
+        <tr><th>ABC ID</th><td th:text="${student.abcId}"></td></tr>
+        <tr><th>Mark1</th><td th:text="${student.mark1}"></td></tr>
+        <tr><th>Mark2</th><td th:text="${student.mark2}"></td></tr>
+        <tr><th>Academic Year</th><td th:text="${student.academicYear}"></td></tr>
+        <tr><th>Admitted Category</th><td th:text="${student.admittedCategory}"></td></tr>
+        <tr><th>Fee Concession</th><td th:text="${student.feeConcession}"></td></tr>
+        <tr><th>Entrance Rank</th><td th:text="${student.entranceRank}"></td></tr>
+        <tr><th>Nativity</th><td th:text="${student.nativity}"></td></tr>
+        <tr><th>Community</th><td th:text="${student.community}"></td></tr>
+        <tr><th>Date of Admission</th><td th:text="${student.dateOfAdmission}"></td></tr>
+        <tr><th>Admission Quota</th><td th:text="${student.admissionQuota}"></td></tr>
+        <tr><th>Admission Type</th><td th:text="${student.admissionType}"></td></tr>
+        <tr><th>Eligible Category</th><td th:text="${student.eligibleCategory}"></td></tr>
+        <tr><th>Entrance Roll No</th><td th:text="${student.entranceRollNo}"></td></tr>
+        <tr><th>NATA Score</th><td th:text="${student.nataScore}"></td></tr>
+        <tr><th>LET Roll No</th><td th:text="${student.letRollNo}"></td></tr>
+        <tr><th>Father Name</th><td th:text="${student.fatherName}"></td></tr>
+        <tr><th>Mother Name</th><td th:text="${student.motherName}"></td></tr>
+        <tr><th>Father Mobile</th><td th:text="${student.fatherMobile}"></td></tr>
+        <tr><th>Mother Mobile</th><td th:text="${student.motherMobile}"></td></tr>
+        <tr><th>Email</th><td th:text="${student.email}"></td></tr>
+        <tr><th>Father Occupation</th><td th:text="${student.fatherOccupation}"></td></tr>
+        <tr><th>Mother Occupation</th><td th:text="${student.motherOccupation}"></td></tr>
+        <tr><th>Phone Office</th><td th:text="${student.phoneOffice}"></td></tr>
+        <tr><th>Annual Income</th><td th:text="${student.annualIncome}"></td></tr>
+        <tr><th>House Name</th><td th:text="${student.houseName}"></td></tr>
+        <tr><th>Street</th><td th:text="${student.street}"></td></tr>
+        <tr><th>Street2</th><td th:text="${student.street2}"></td></tr>
+        <tr><th>District</th><td th:text="${student.district}"></td></tr>
+        <tr><th>Pin</th><td th:text="${student.pin}"></td></tr>
+        <tr><th>State</th><td th:text="${student.state}"></td></tr>
+        <tr><th>Bank Name</th><td th:text="${student.bankName}"></td></tr>
+        <tr><th>Branch</th><td th:text="${student.branch}"></td></tr>
+        <tr><th>Account No</th><td th:text="${student.accountNo}"></td></tr>
+        <tr><th>IFSC Code</th><td th:text="${student.ifscCode}"></td></tr>
+        <tr><th>User Name</th><td th:text="${student.userName}"></td></tr>
+        <tr><th>Parent User Name</th><td th:text="${student.parentUserName}"></td></tr>
+        <tr><th>Last Login</th><td th:text="${student.lastLogin}"></td></tr>
+        <tr><th>Default Password</th><td th:text="${student.defaultPassword}"></td></tr>
+        <tr><th>Parent Default Pwd</th><td th:text="${student.parentDefaultPwd}"></td></tr>
+        <tr><th>Department</th><td th:text="${student.department}"></td></tr>
+        <tr><th>Opt Out</th><td th:text="${student.optOut}"></td></tr>
+        <tr><th>Contributed IG</th><td th:text="${student.contributedIg}"></td></tr>
+        <tr><th>Contributor</th><td th:text="${student.contributor}"></td></tr>
+        <tr><th>First Name</th><td th:text="${student.firstName}"></td></tr>
+        <tr><th>Last Name</th><td th:text="${student.lastName}"></td></tr>
+        </tbody>
+    </table>
+    <a th:href="@{/students}" class="btn btn-secondary">Back to List</a>
+</div>
+</body>
+</html>
