@@ -29,7 +29,10 @@ public class StudentController {
     @GetMapping("/students")
     public String listStudents(Model model,
                                @Param("keyword") String keyword,
-                               @Param("branch") String branch) {
+                               @Param("branch") String branch,
+                               @Param("page") Integer page) {
+        int pageSize = 25;
+        int currentPage = (page == null || page < 1) ? 1 : page;
         List<Student> listStudent;
         if (branch != null && !branch.isEmpty()) {
             listStudent = studentService.getStudentsByBranch(branch);
@@ -38,10 +41,17 @@ public class StudentController {
         } else {
             listStudent = studentService.getAllStudents(); // Show all students by default
         }
-        model.addAttribute("students", listStudent);
+        int total = listStudent.size();
+        int from = (currentPage - 1) * pageSize;
+        int to = Math.min(from + pageSize, total);
+        List<Student> pageList = listStudent.subList(Math.min(from, total), Math.min(to, total));
+        int totalPages = (int) Math.ceil((double) total / pageSize);
+        model.addAttribute("students", pageList);
         model.addAttribute("keyword", keyword);
         model.addAttribute("branches", studentService.getAllBranches());
         model.addAttribute("selectedBranch", branch);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
         return "students";
     }
 
@@ -126,7 +136,9 @@ public class StudentController {
     }
 
     @GetMapping("/insta-ids")
-    public String instaIdsPage(Model model, @Param("branch") String branch) {
+    public String instaIdsPage(Model model, @Param("branch") String branch, @Param("page") Integer page) {
+        int pageSize = 25;
+        int currentPage = (page == null || page < 1) ? 1 : page;
         List<Student> allStudents;
         if (branch != null && !branch.isEmpty()) {
             allStudents = studentService.getStudentsByBranch(branch);
@@ -143,10 +155,21 @@ public class StudentController {
             .sorted(Comparator.comparing(Student::getBranch, Comparator.nullsFirst(String.CASE_INSENSITIVE_ORDER))
                 .thenComparing(Student::getName, Comparator.nullsFirst(String.CASE_INSENSITIVE_ORDER)))
             .collect(Collectors.toList());
-        model.addAttribute("knownInsta", known);
-        model.addAttribute("unknownInsta", unknown);
+        int knownTotal = known.size();
+        int knownFrom = (currentPage - 1) * pageSize;
+        int knownTo = Math.min(knownFrom + pageSize, knownTotal);
+        List<Student> knownPage = known.subList(Math.min(knownFrom, knownTotal), Math.min(knownTo, knownTotal));
+        int unknownTotal = unknown.size();
+        int unknownFrom = (currentPage - 1) * pageSize;
+        int unknownTo = Math.min(unknownFrom + pageSize, unknownTotal);
+        List<Student> unknownPage = unknown.subList(Math.min(unknownFrom, unknownTotal), Math.min(unknownTo, unknownTotal));
+        int totalPages = (int) Math.ceil((double) Math.max(knownTotal, unknownTotal) / pageSize);
+        model.addAttribute("knownInsta", knownPage);
+        model.addAttribute("unknownInsta", unknownPage);
         model.addAttribute("branches", studentService.getAllBranches());
         model.addAttribute("selectedBranch", branch);
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
         return "insta_ids";
     }
 
@@ -163,5 +186,22 @@ public class StudentController {
         student.setInstagramId(instagramId);
         studentService.updateStudent(student);
         return "redirect:/insta-ids";
+    }
+
+    @GetMapping("/students/contribute-birthday/{id}")
+    public String contributeBirthdayForm(@PathVariable Long id, Model model) {
+        Student student = studentService.getStudentById(id);
+        model.addAttribute("student", student);
+        return "contribute_birthday";
+    }
+
+    @PostMapping("/students/contribute-birthday/{id}")
+    public String saveContributedBirthday(@PathVariable Long id, @Param("dateOfBirth") String dateOfBirth) {
+        Student student = studentService.getStudentById(id);
+        if (dateOfBirth != null && !dateOfBirth.isEmpty()) {
+            student.setDateOfBirth(LocalDate.parse(dateOfBirth));
+            studentService.updateStudent(student);
+        }
+        return "redirect:/birthdays";
     }
 }

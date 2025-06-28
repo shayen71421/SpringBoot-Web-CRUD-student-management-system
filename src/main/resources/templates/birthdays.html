@@ -51,13 +51,16 @@
     </table>
     <h4 class="mt-4 text-secondary">Unknown Birthdays</h4>
     <table class="table table-bordered">
-        <thead><tr><th>Name</th><th>SR No</th></tr></thead>
+        <thead><tr><th>Name</th><th>SR No</th><th>Action</th></tr></thead>
         <tbody>
         <tr th:each="student : ${unknownBirthdays}">
             <td th:text="${student.name}"></td>
             <td th:text="${student.srNo}"></td>
+            <td>
+                <a th:href="@{'/students/contribute-birthday/' + ${student.id}}" class="btn btn-sm btn-link">Contribute Birthday</a>
+            </td>
         </tr>
-        <tr th:if="${#lists.isEmpty(unknownBirthdays)}"><td colspan="2">No unknown birthdays.</td></tr>
+        <tr th:if="${#lists.isEmpty(unknownBirthdays)}"><td colspan="3">No unknown birthdays.</td></tr>
         </tbody>
     </table>
 </div>

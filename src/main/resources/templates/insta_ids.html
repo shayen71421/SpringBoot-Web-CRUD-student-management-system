@@ -52,6 +52,19 @@
         <tr th:if="${#lists.isEmpty(unknownInsta)}"><td colspan="3">No unknown Instagram IDs.</td></tr>
         </tbody>
     </table>
+    <nav th:if="${totalPages > 1}">
+        <ul class="pagination">
+            <li class="page-item" th:classappend="${currentPage == 1} ? 'disabled'">
+                <a class="page-link" th:href="@{/insta-ids(page=${currentPage-1}, branch=${selectedBranch})}">Previous</a>
+            </li>
+            <li class="page-item" th:each="i : ${#numbers.sequence(1, totalPages)}" th:classappend="${i == currentPage} ? 'active'">
+                <a class="page-link" th:href="@{/insta-ids(page=${i}, branch=${selectedBranch})}" th:text="${i}"></a>
+            </li>
+            <li class="page-item" th:classappend="${currentPage == totalPages} ? 'disabled'">
+                <a class="page-link" th:href="@{/insta-ids(page=${currentPage+1}, branch=${selectedBranch})}">Next</a>
+            </li>
+        </ul>
+    </nav>
 </div>
 </body>
 </html>
