@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram IDs</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <style>
+        .table-striped tbody tr:nth-of-type(odd) { background-color: #f9f9f9; }
+        .table-striped tbody tr:nth-of-type(even) { background-color: #e9ecef; }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Student Management System</a>
+    <a class="btn btn-secondary ml-3" th:href="@{/students}">Back to List</a>
+</nav>
+<div class="container mt-4">
+    <h2>Instagram IDs</h2>
+    <form method="get" th:action="@{/insta-ids}" class="form-inline mb-3">
+        <label class="mr-2">Branch:</label>
+        <select name="branch" class="form-control mr-2">
+            <option value="" th:selected="${selectedBranch == null or selectedBranch == ''}">All</option>
+            <option th:each="b : ${branches}" th:value="${b}" th:text="${b}" th:selected="${selectedBranch == b}"></option>
+        </select>
+        <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Name</th>
+                <th>Branch</th>
+                <th>Instagram ID</th>
+            </tr>
+        </thead>
+        <tbody>
+        <tr th:each="student : ${knownInsta}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.department}"></td>
+            <td th:text="${student.instagramId}"></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(knownInsta)}"><td colspan="3">No known Instagram IDs.</td></tr>
+        </tbody>
+        <tbody>
+        <tr th:each="student : ${unknownInsta}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.department}"></td>
+            <td>unknown id
+                <a th:href="@{'/students/contribute-insta/' + ${student.id}}" class="btn btn-sm btn-link">Contribute Insta ID</a>
+            </td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(unknownInsta)}"><td colspan="3">No unknown Instagram IDs.</td></tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

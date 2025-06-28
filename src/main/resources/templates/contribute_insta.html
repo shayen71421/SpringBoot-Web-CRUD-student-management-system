@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contribute Instagram ID</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Student Management System</a>
+    <a class="btn btn-secondary ml-3" th:href="@{/insta-ids}">Back to Insta IDs</a>
+</nav>
+<div class="container mt-4">
+    <h2>Contribute Instagram ID</h2>
+    <form th:action="@{'/students/contribute-insta/' + ${student.id}}" method="post">
+        <div class="form-group">
+            <label>Name:</label>
+            <input type="text" class="form-control" th:value="${student.name}" readonly />
+        </div>
+        <div class="form-group">
+            <label>Instagram ID:</label>
+            <input type="text" class="form-control" name="instagramId" placeholder="Enter Instagram ID" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+</body>
+</html>

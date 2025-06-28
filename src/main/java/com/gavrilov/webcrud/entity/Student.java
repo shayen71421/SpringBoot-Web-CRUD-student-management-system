@@ -131,6 +131,8 @@ public class Student {
     private String firstName;
     @Column(name = "last_name", length = 255)
     private String lastName;
+    @Column(name = "Instagram_id") // Capital I to match DB
+    private String instagramId;
 
     public Student() {
     }
@@ -626,5 +628,13 @@ public class Student {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public String getInstagramId() {
+        return instagramId;
+    }
+
+    public void setInstagramId(String instagramId) {
+        this.instagramId = instagramId;
     }
 }

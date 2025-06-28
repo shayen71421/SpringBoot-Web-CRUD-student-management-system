@@ -14,6 +14,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class StudentController {
@@ -122,5 +123,45 @@ public class StudentController {
         model.addAttribute("pastBirthdays", pastBirthdays);
         model.addAttribute("unknownBirthdays", unknownBirthdays);
         return "birthdays";
+    }
+
+    @GetMapping("/insta-ids")
+    public String instaIdsPage(Model model, @Param("branch") String branch) {
+        List<Student> allStudents;
+        if (branch != null && !branch.isEmpty()) {
+            allStudents = studentService.getStudentsByBranch(branch);
+        } else {
+            allStudents = studentService.getAllStudents();
+        }
+        List<Student> known = allStudents.stream()
+            .filter(s -> s.getInstagramId() != null && !s.getInstagramId().trim().isEmpty())
+            .sorted(Comparator.comparing(Student::getBranch, Comparator.nullsFirst(String.CASE_INSENSITIVE_ORDER))
+                .thenComparing(Student::getInstagramId, Comparator.nullsFirst(String.CASE_INSENSITIVE_ORDER)))
+            .collect(Collectors.toList());
+        List<Student> unknown = allStudents.stream()
+            .filter(s -> s.getInstagramId() == null || s.getInstagramId().trim().isEmpty())
+            .sorted(Comparator.comparing(Student::getBranch, Comparator.nullsFirst(String.CASE_INSENSITIVE_ORDER))
+                .thenComparing(Student::getName, Comparator.nullsFirst(String.CASE_INSENSITIVE_ORDER)))
+            .collect(Collectors.toList());
+        model.addAttribute("knownInsta", known);
+        model.addAttribute("unknownInsta", unknown);
+        model.addAttribute("branches", studentService.getAllBranches());
+        model.addAttribute("selectedBranch", branch);
+        return "insta_ids";
+    }
+
+    @GetMapping("/students/contribute-insta/{id}")
+    public String contributeInstaIdForm(@PathVariable Long id, Model model) {
+        Student student = studentService.getStudentById(id);
+        model.addAttribute("student", student);
+        return "contribute_insta";
+    }
+
+    @PostMapping("/students/contribute-insta/{id}")
+    public String saveContributedInstaId(@PathVariable Long id, @Param("instagramId") String instagramId) {
+        Student student = studentService.getStudentById(id);
+        student.setInstagramId(instagramId);
+        studentService.updateStudent(student);
+        return "redirect:/insta-ids";
     }
 }
