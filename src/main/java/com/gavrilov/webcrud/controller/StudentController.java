@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 @Controller
@@ -24,15 +27,20 @@ public class StudentController {
 
     @GetMapping("/students")
     public String listStudents(Model model,
-                               @Param("keyword") String keyword){
+                               @Param("keyword") String keyword,
+                               @Param("branch") String branch) {
         List<Student> listStudent;
-        if (keyword != null && !keyword.isEmpty()) {
+        if (branch != null && !branch.isEmpty()) {
+            listStudent = studentService.getStudentsByBranch(branch);
+        } else if (keyword != null && !keyword.isEmpty()) {
             listStudent = studentService.listAll(keyword);
         } else {
-            listStudent = studentService.getFirstNStudents(10);
+            listStudent = studentService.getAllStudents(); // Show all students by default
         }
         model.addAttribute("students", listStudent);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("branches", studentService.getAllBranches());
+        model.addAttribute("selectedBranch", branch);
         return "students";
     }
 
@@ -83,5 +91,36 @@ public class StudentController {
         Student student = studentService.getStudentById(id);
         model.addAttribute("student", student);
         return "view_student";
+    }
+
+    @GetMapping("/birthdays")
+    public String birthdaysPage(Model model) {
+        List<Student> allStudents = studentService.getAllStudents();
+        LocalDate today = LocalDate.now();
+        List<Student> todayBirthdays = new ArrayList<>();
+        List<Student> upcomingBirthdays = new ArrayList<>();
+        List<Student> pastBirthdays = new ArrayList<>();
+        List<Student> unknownBirthdays = new ArrayList<>();
+        for (Student s : allStudents) {
+            if (s.getDateOfBirth() == null || s.getDateOfBirth().equals(LocalDate.of(1970, 1, 1))) {
+                unknownBirthdays.add(s);
+            } else {
+                LocalDate birthdayThisYear = s.getDateOfBirth().withYear(today.getYear());
+                if (birthdayThisYear.isEqual(today)) {
+                    todayBirthdays.add(s);
+                } else if (birthdayThisYear.isAfter(today)) {
+                    upcomingBirthdays.add(s);
+                } else {
+                    pastBirthdays.add(s);
+                }
+            }
+        }
+        upcomingBirthdays.sort(Comparator.comparing(s -> s.getDateOfBirth().withYear(today.getYear())));
+        pastBirthdays.sort(Comparator.comparing(s -> s.getDateOfBirth().withYear(today.getYear())));
+        model.addAttribute("todayBirthdays", todayBirthdays);
+        model.addAttribute("upcomingBirthdays", upcomingBirthdays);
+        model.addAttribute("pastBirthdays", pastBirthdays);
+        model.addAttribute("unknownBirthdays", unknownBirthdays);
+        return "birthdays";
     }
 }

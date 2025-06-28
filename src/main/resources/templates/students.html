@@ -23,6 +23,9 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/students}">Student Management</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/birthdays}">Birthdays</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -47,6 +50,14 @@
                     </div>
                 </form>
             </div>
+        <div class="row mb-3">
+            <div class="col">
+                <strong>Branches:</strong>
+                <span th:each="branch : ${branches}">
+                    <a th:href="@{/students(branch=${branch})}" th:text="${branch}" th:classappend="${branch} == ${selectedBranch} ? 'btn btn-sm btn-primary mx-1' : 'btn btn-sm btn-outline-primary mx-1'"></a>
+                </span>
+            </div>
+        </div>
         <div>&nbsp;</div>
         <table class = "table table-striped table-bordered">
             <thead class = "table-primary">
@@ -60,7 +71,7 @@
             <tbody>
                 <tr th:each = "student: ${students}">
                     <td th:text="${student.name}"></td>
-                    <td th:text="${student.email}"></td>
+                    <td th:text="${#strings.toLowerCase(#strings.listSplit(student.name, ' ')[0]) + student.srNo + '@sahrdaya.ac.in'}"></td>
                     <td>
                         <a th:href="@{/students/view/{id}(id=${student.id})}"
                            class="btn btn-info">View</a>

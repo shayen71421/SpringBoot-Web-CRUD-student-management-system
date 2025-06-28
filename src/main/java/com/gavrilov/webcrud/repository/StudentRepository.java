@@ -11,8 +11,13 @@ import java.util.List;
 
 public interface StudentRepository extends JpaRepository<Student, Long> {
 
-    @Query("SELECT s FROM Student s WHERE s.name LIKE %?1% OR s.email LIKE %?1%")
+    @Query("SELECT s FROM Student s WHERE LOWER(s.name) LIKE LOWER(CONCAT('%', ?1, '%')) OR LOWER(s.email) LIKE LOWER(CONCAT('%', ?1, '%')) OR LOWER(s.universityRegNo) LIKE LOWER(CONCAT('%', ?1, '%')) ORDER BY s.universityRegNo ASC")
     List<Student> findAll(String keyword);
 
-    Page<Student> findAll(Pageable pageable);
+    Page<Student> findAllByOrderByUniversityRegNoAsc(Pageable pageable);
+
+    @Query("SELECT DISTINCT SUBSTRING(s.universityRegNo, 6, 2) FROM Student s WHERE s.universityRegNo IS NOT NULL")
+    List<String> findDistinctBranches();
+
+    List<Student> findByUniversityRegNoContainingOrderByUniversityRegNoAsc(String branchCode);
 }

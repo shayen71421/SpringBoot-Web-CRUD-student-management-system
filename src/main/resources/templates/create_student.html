@@ -23,6 +23,9 @@
             <li class="nav-item">
                 <a class="nav-link" th:href="@{/students}">Student Management</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" th:href="@{/birthdays}">Birthdays</a>
+            </li>
         </ul>
     </div>
 </nav>
@@ -54,6 +57,226 @@
                                         class = "form-control"
                                         required placeholder="Enter Student Email"
                                 />
+                            </div>
+                            <div class = "form-group">
+                                <label> University Reg No</label>
+                                <input type = "text" name = "universityRegNo" th:field = "*{universityRegNo}" class = "form-control" required placeholder="Enter University Reg No" />
+                            </div>
+                            <div class = "form-group">
+                                <label> SR No</label>
+                                <input type = "text" name = "srNo" th:field = "*{srNo}" class = "form-control" required placeholder="Enter SR No" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Gender</label>
+                                <input type = "text" name = "gender" th:field = "*{gender}" class = "form-control" placeholder="Enter Gender" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Date of Birth</label>
+                                <input type = "date" name = "dateOfBirth" th:field = "*{dateOfBirth}" class = "form-control" placeholder="Enter Date of Birth" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Religion</label>
+                                <input type = "text" name = "religion" th:field = "*{religion}" class = "form-control" placeholder="Enter Religion" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Place of Birth</label>
+                                <input type = "text" name = "placeOfBirth" th:field = "*{placeOfBirth}" class = "form-control" placeholder="Enter Place of Birth" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Mother Tongue</label>
+                                <input type = "text" name = "motherTongue" th:field = "*{motherTongue}" class = "form-control" placeholder="Enter Mother Tongue" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Admission No</label>
+                                <input type = "text" name = "admissionNo" th:field = "*{admissionNo}" class = "form-control" placeholder="Enter Admission No" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Nationality</label>
+                                <input type = "text" name = "nationality" th:field = "*{nationality}" class = "form-control" placeholder="Enter Nationality" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Caste</label>
+                                <input type = "text" name = "caste" th:field = "*{caste}" class = "form-control" placeholder="Enter Caste" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Blood Group</label>
+                                <input type = "text" name = "bloodGroup" th:field = "*{bloodGroup}" class = "form-control" placeholder="Enter Blood Group" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Aadhaar No</label>
+                                <input type = "text" name = "aadhaarNo" th:field = "*{aadhaarNo}" class = "form-control" placeholder="Enter Aadhaar No" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Academic Year</label>
+                                <input type = "text" name = "academicYear" th:field = "*{academicYear}" class = "form-control" placeholder="Enter Academic Year" />
+                            </div>
+                            <div class = "form-group">
+                                <label> University Student ID</label>
+                                <input type = "text" name = "studentId" th:field = "*{studentId}" class = "form-control" placeholder="Enter University Student ID" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Mark 1</label>
+                                <input type = "text" name = "mark1" th:field = "*{mark1}" class = "form-control" placeholder="Enter Mark 1" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Mark 2</label>
+                                <input type = "text" name = "mark2" th:field = "*{mark2}" class = "form-control" placeholder="Enter Mark 2" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Admitted Category</label>
+                                <input type = "text" name = "admittedCategory" th:field = "*{admittedCategory}" class = "form-control" placeholder="Enter Admitted Category" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Fee Concession</label>
+                                <input type = "text" name = "feeConcession" th:field = "*{feeConcession}" class = "form-control" placeholder="Enter Fee Concession" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Entrance Rank</label>
+                                <input type = "text" name = "entranceRank" th:field = "*{entranceRank}" class = "form-control" placeholder="Enter Entrance Rank" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Nativity</label>
+                                <input type = "text" name = "nativity" th:field = "*{nativity}" class = "form-control" placeholder="Enter Nativity" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Community</label>
+                                <input type = "text" name = "community" th:field = "*{community}" class = "form-control" placeholder="Enter Community" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Date of Admission</label>
+                                <input type = "date" name = "dateOfAdmission" th:field = "*{dateOfAdmission}" class = "form-control" placeholder="Enter Date of Admission" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Admission Quota</label>
+                                <input type = "text" name = "admissionQuota" th:field = "*{admissionQuota}" class = "form-control" placeholder="Enter Admission Quota" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Admission Type</label>
+                                <input type = "text" name = "admissionType" th:field = "*{admissionType}" class = "form-control" placeholder="Enter Admission Type" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Eligible Category</label>
+                                <input type = "text" name = "eligibleCategory" th:field = "*{eligibleCategory}" class = "form-control" placeholder="Enter Eligible Category" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Entrance Roll No</label>
+                                <input type = "text" name = "entranceRollNo" th:field = "*{entranceRollNo}" class = "form-control" placeholder="Enter Entrance Roll No" />
+                            </div>
+                            <div class = "form-group">
+                                <label> NATA Score</label>
+                                <input type = "text" name = "nataScore" th:field = "*{nataScore}" class = "form-control" placeholder="Enter NATA Score" />
+                            </div>
+                            <div class = "form-group">
+                                <label> LET Roll No</label>
+                                <input type = "text" name = "letRollNo" th:field = "*{letRollNo}" class = "form-control" placeholder="Enter LET Roll No" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Father Name</label>
+                                <input type = "text" name = "fatherName" th:field = "*{fatherName}" class = "form-control" placeholder="Enter Father Name" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Mother Name</label>
+                                <input type = "text" name = "motherName" th:field = "*{motherName}" class = "form-control" placeholder="Enter Mother Name" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Father Mobile</label>
+                                <input type = "text" name = "fatherMobile" th:field = "*{fatherMobile}" class = "form-control" placeholder="Enter Father Mobile" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Mother Mobile</label>
+                                <input type = "text" name = "motherMobile" th:field = "*{motherMobile}" class = "form-control" placeholder="Enter Mother Mobile" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Father Occupation</label>
+                                <input type = "text" name = "fatherOccupation" th:field = "*{fatherOccupation}" class = "form-control" placeholder="Enter Father Occupation" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Mother Occupation</label>
+                                <input type = "text" name = "motherOccupation" th:field = "*{motherOccupation}" class = "form-control" placeholder="Enter Mother Occupation" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Phone Office</label>
+                                <input type = "text" name = "phoneOffice" th:field = "*{phoneOffice}" class = "form-control" placeholder="Enter Phone Office" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Annual Income</label>
+                                <input type = "text" name = "annualIncome" th:field = "*{annualIncome}" class = "form-control" placeholder="Enter Annual Income" />
+                            </div>
+                            <div class = "form-group">
+                                <label> House Name</label>
+                                <input type = "text" name = "houseName" th:field = "*{houseName}" class = "form-control" placeholder="Enter House Name" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Street</label>
+                                <input type = "text" name = "street" th:field = "*{street}" class = "form-control" placeholder="Enter Street" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Street2</label>
+                                <input type = "text" name = "street2" th:field = "*{street2}" class = "form-control" placeholder="Enter Street2" />
+                            </div>
+                            <div class = "form-group">
+                                <label> District</label>
+                                <input type = "text" name = "district" th:field = "*{district}" class = "form-control" placeholder="Enter District" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Pin</label>
+                                <input type = "text" name = "pin" th:field = "*{pin}" class = "form-control" placeholder="Enter Pin" />
+                            </div>
+                            <div class = "form-group">
+                                <label> State</label>
+                                <input type = "text" name = "state" th:field = "*{state}" class = "form-control" placeholder="Enter State" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Bank Name</label>
+                                <input type = "text" name = "bankName" th:field = "*{bankName}" class = "form-control" placeholder="Enter Bank Name" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Branch</label>
+                                <input type = "text" name = "branch" th:field = "*{branch}" class = "form-control" placeholder="Enter Branch" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Account No</label>
+                                <input type = "text" name = "accountNo" th:field = "*{accountNo}" class = "form-control" placeholder="Enter Account No" />
+                            </div>
+                            <div class = "form-group">
+                                <label> IFSC Code</label>
+                                <input type = "text" name = "ifscCode" th:field = "*{ifscCode}" class = "form-control" placeholder="Enter IFSC Code" />
+                            </div>
+                            <div class = "form-group">
+                                <label> User Name</label>
+                                <input type = "text" name = "userName" th:field = "*{userName}" class = "form-control" placeholder="Enter User Name" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Parent User Name</label>
+                                <input type = "text" name = "parentUserName" th:field = "*{parentUserName}" class = "form-control" placeholder="Enter Parent User Name" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Last Login</label>
+                                <input type = "datetime-local" name = "lastLogin" th:field = "*{lastLogin}" class = "form-control" placeholder="Enter Last Login" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Default Password</label>
+                                <input type = "text" name = "defaultPassword" th:field = "*{defaultPassword}" class = "form-control" placeholder="Enter Default Password" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Parent Default Password</label>
+                                <input type = "text" name = "parentDefaultPwd" th:field = "*{parentDefaultPwd}" class = "form-control" placeholder="Enter Parent Default Password" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Department</label>
+                                <input type = "text" name = "department" th:field = "*{department}" class = "form-control" placeholder="Enter Department" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Opt Out</label>
+                                <input type = "checkbox" name = "optOut" th:field = "*{optOut}" class = "form-check-input" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Contributed IG</label>
+                                <input type = "text" name = "contributedIg" th:field = "*{contributedIg}" class = "form-control" placeholder="Enter Contributed IG" />
+                            </div>
+                            <div class = "form-group">
+                                <label> Contributor</label>
+                                <input type = "text" name = "contributor" th:field = "*{contributor}" class = "form-control" placeholder="Enter Contributor" />
                             </div>
                                 <div class = "footer-body">
                                     <button type="submit" class="btn btn-primary">

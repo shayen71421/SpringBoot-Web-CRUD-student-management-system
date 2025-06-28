@@ -50,7 +50,7 @@
         <tr><th>Mother Name</th><td th:text="${student.motherName}"></td></tr>
         <tr><th>Father Mobile</th><td th:text="${student.fatherMobile}"></td></tr>
         <tr><th>Mother Mobile</th><td th:text="${student.motherMobile}"></td></tr>
-        <tr><th>Email</th><td th:text="${student.email}"></td></tr>
+        <tr><th>Email</th><td th:text="${#strings.toLowerCase(#strings.listSplit(student.name, ' ')[0]) + student.srNo + '@sahrdaya.ac.in'}"></td></tr>
         <tr><th>Father Occupation</th><td th:text="${student.fatherOccupation}"></td></tr>
         <tr><th>Mother Occupation</th><td th:text="${student.motherOccupation}"></td></tr>
         <tr><th>Phone Office</th><td th:text="${student.phoneOffice}"></td></tr>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Birthdays</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Student Management System</a>
+    <a class="btn btn-secondary ml-3" th:href="@{/students}">Back to List</a>
+</nav>
+<div class="container mt-4">
+    <h2>Student Birthdays</h2>
+    <h4 class="mt-4 text-success">Today's Birthdays</h4>
+    <table class="table table-bordered">
+        <thead><tr><th>Name</th><th>SR No</th><th>Date of Birth</th></tr></thead>
+        <tbody>
+        <tr th:each="student : ${todayBirthdays}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.srNo}"></td>
+            <td th:text="${student.dateOfBirth}"></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(todayBirthdays)}"><td colspan="3">No birthdays today.</td></tr>
+        </tbody>
+    </table>
+    <h4 class="mt-4 text-primary">Upcoming Birthdays</h4>
+    <table class="table table-bordered">
+        <thead><tr><th>Name</th><th>SR No</th><th>Date of Birth</th></tr></thead>
+        <tbody>
+        <tr th:each="student : ${upcomingBirthdays}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.srNo}"></td>
+            <td th:text="${student.dateOfBirth}"></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(upcomingBirthdays)}"><td colspan="3">No upcoming birthdays.</td></tr>
+        </tbody>
+    </table>
+    <h4 class="mt-4 text-muted">Past Birthdays</h4>
+    <table class="table table-bordered">
+        <thead><tr><th>Name</th><th>SR No</th><th>Date of Birth</th></tr></thead>
+        <tbody>
+        <tr th:each="student : ${pastBirthdays}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.srNo}"></td>
+            <td th:text="${student.dateOfBirth}"></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(pastBirthdays)}"><td colspan="3">No past birthdays.</td></tr>
+        </tbody>
+    </table>
+    <h4 class="mt-4 text-secondary">Unknown Birthdays</h4>
+    <table class="table table-bordered">
+        <thead><tr><th>Name</th><th>SR No</th></tr></thead>
+        <tbody>
+        <tr th:each="student : ${unknownBirthdays}">
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.srNo}"></td>
+        </tr>
+        <tr th:if="${#lists.isEmpty(unknownBirthdays)}"><td colspan="2">No unknown birthdays.</td></tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

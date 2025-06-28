@@ -19,7 +19,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getAllStudents() {
-        return studentRepository.findAll();
+        return studentRepository.findAllByOrderByUniversityRegNoAsc(PageRequest.of(0, Integer.MAX_VALUE)).getContent();
     }
 
     @Override
@@ -51,7 +51,16 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<Student> getFirstNStudents(int n) {
-        Pageable pageable = PageRequest.of(0, n);
-        return studentRepository.findAll(pageable).getContent();
+        return studentRepository.findAllByOrderByUniversityRegNoAsc(PageRequest.of(0, n)).getContent();
+    }
+
+    @Override
+    public List<String> getAllBranches() {
+        return studentRepository.findDistinctBranches();
+    }
+
+    @Override
+    public List<Student> getStudentsByBranch(String branchCode) {
+        return studentRepository.findByUniversityRegNoContainingOrderByUniversityRegNoAsc(branchCode);
     }
 }
