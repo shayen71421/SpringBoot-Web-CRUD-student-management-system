@@ -8,7 +8,7 @@
 
 - Create student
 - Read list stduent
-- Update student
+- Update  student
 
 
 ## Tools
